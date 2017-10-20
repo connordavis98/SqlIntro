@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace SqlIntro
 {
@@ -6,9 +7,9 @@ namespace SqlIntro
     {
         static void Main(string[] args)
         {
-            var connectionString = ""; //get connectionString format from connectionstrings.com and change to match your database
+            var connectionString = "Server=localhost;Database=adventureworks;User Id=root;Password = Littlebit11;"; 
             var repo = new ProductRepository(connectionString);
-            foreach (var prod in repo.GetProducts())
+            foreach (var prod in repo.GetProducts().Take(1))
             {
                 Console.WriteLine("Product Name:" + prod.Name);
             }
@@ -16,7 +17,5 @@ namespace SqlIntro
            
             Console.ReadLine();
         }
-
-       
     }
 }
