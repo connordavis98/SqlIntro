@@ -27,14 +27,14 @@ namespace SqlIntro
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from product"; //TODO:  Write a SELECT statement that gets all products
+                cmd.CommandText = "select Name, ModifiedDate from product where ModifiedDate > '2000-10-19' and ModifiedDate < '2017-10-20';"; 
                 var dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     yield return new Product
                     {
                         Name = dr["Name"].ToString(),
-                        ListPrice = (double)dr["ListPrice"]
+                        ModifiedDate = (DateTime)dr["ModifiedDate"]
                     };
                 }
             }

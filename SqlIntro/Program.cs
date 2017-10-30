@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 
 namespace SqlIntro
@@ -7,11 +8,11 @@ namespace SqlIntro
     {
         static void Main(string[] args)
         {
-            var connectionString = "Server=localhost;Database=adventureworks;User Id=root;Password = Littlebit11;"; 
+            var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
             var repo = new ProductRepository(connectionString);
-            foreach (var prod in repo.GetProducts().Take(1))
+            foreach (var prod in repo.GetProducts())
             {
-                Console.WriteLine("Product Name:" + prod.Name);
+                Console.WriteLine("Product Name:" + prod.Name + "ModifiedDate"+ prod.ModifiedDate.DayOfWeek);
             }
 
            
